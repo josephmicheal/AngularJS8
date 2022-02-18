@@ -1,0 +1,11 @@
+<div class="row">
+<div class="col-xs-12">
+   <button calss=".btn btn-success">New Button</button>
+</div>
+<hr>
+</div>
+<div class="row">
+    <div class="col-xs-12">      
+        <recipe-item *ngFor="let recipe of recipes" [currentRecipe]="recipe" (itemSelected)="onItemSelection(recipe)"></recipe-item>
+    </div>
+</div>

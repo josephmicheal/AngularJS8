@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form [formGroup]="userFormGroup" (ngSubmit)="submitUserForm()">
+        <div formGroupName="userData">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" class="form-control" formControlName="username">
+            <span
+              *ngIf="userFormGroup.get('userData.username').touched && !userFormGroup.get('userData.username').valid">            
+              <span *ngIf="userFormGroup.get('userData.username').errors['required']">Username is required</span>
+              <span *ngIf="!userFormGroup.get('userData.username').errors['required'] && userFormGroup.get('userData.username').errors['invalidName']">Please enter valid Username</span>
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="email">email</label>
+            <input type="text" id="email" class="form-control" formControlName="email">
+            <span
+              *ngIf="userFormGroup.get('userData.email').touched && !userFormGroup.get('userData.email').valid">Please
+              enter valid Email</span>
+          </div>
+        </div>
+        <div class="radio" *ngFor="let gender of genders">
+          <label>
+            <input type="radio" [value]="gender" formControlName="gender">{{ gender }}
+          </label>
+          <span *ngIf="userFormGroup.get('gender').touched && !userFormGroup.get('gender').valid">Please enter valid
+            Gender</span>
+        </div>
+        <div formArrayName="hobbies">
+          <button class="btn btn-default" type="button" (click)="addNewHobby()">Add Hobby</button>
+          <div class="form-group" *ngFor="let hobbyControl of userFormGroup.get('hobbies').controls; let i = index">
+            <input type="text" class="form-control" [formControlName]="i">
+          </div>
+        </div>
+        <span *ngIf="userFormGroup.touched && !userFormGroup.valid">Please enter valid form data</span>
+        <button class="btn btn-primary" type="submit">Submit</button>
+        <button class="btn btn-primary" type="button" (click)="resetUserForm()">Reset</button>
+      </form>
+    </div>
+  </div>
+</div>

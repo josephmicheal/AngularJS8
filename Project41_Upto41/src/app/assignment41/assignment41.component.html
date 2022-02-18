@@ -1,0 +1,6 @@
+<button class="btn btn-primary" (click)="onClickDisplyDetails()">Display Details</button>
+
+<p *ngIf="displayParagraph">Jovi studies well!</p>
+<div *ngFor="let clickVal of clickVals; let i = index"
+[ngStyle]="{backgroundColor:(i > 5 ? 'blue' : 'transparent')}" 
+[ngClass]="{setTextColor: i > 5 }">Counter {{clickVal}}</div>
